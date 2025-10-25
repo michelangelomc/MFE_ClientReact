@@ -8,6 +8,7 @@
 .aluno-container header{
     display: flex;
     align-items: center;
+    gap: 12px;
 }
 
 .aluno-container header span{
@@ -24,20 +25,31 @@
 }
 
 .aluno-container header a{
-    width: 250px;
+    width: 175px; /* reduzido ~30% */
     margin-left: auto;
     margin-top: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
 }
 
 .aluno-container header button{
-    height: 30px;
-    width: 30px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #DCDCE6;
+    height: 21px; /* reduzido ~30% */
+    width: 53px;  /* reduzido ~30% */
+    padding: 6px;
+    border-radius: 4px;
+    border: 0px solid #DCDCE6;
     background: transparent;
-    margin-left: 16px;
-    transition: border-color 0.5s;
+    margin-left: 12px;
+    transition: border-color 0.25s, transform 0.12s;
+}
+
+.aluno-container header .logout-btn{
+    /* garante alinhamento específico para o botão de logout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .aluno-container header button:hover{
@@ -80,7 +92,7 @@
     top: 7px;
     display: flex;
     flex-direction: column; /* empilha os botões verticalmente */
-    gap: 0px; /* exatamente 0px entre os botões */
+    gap: 2px; /* 2px entre os botões para melhor visual */
 }
 
 .aluno-container ul li .actions button{
