@@ -1,0 +1,44 @@
+name: CI - client_react
+
+on:
+  push:
+    branches: [ main, master, feature/*, develop, "*" ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build-client:
+    name: Build client_react
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies (client_react)
+        working-directory: ./client_react
+        run: |
+          npm ci
+
+      - name: Build client_react
+        working-directory: ./client_react
+        run: |
+          # run build if available; otherwise exit 0
+          if npm run | sed -n '1,200p' | grep -q " build"; then
+            npm run build
+          else
+            echo "No build script found, skipping build"
+          fi
+
+      - name: Upload build artifact (optional)
+        if: success() && steps.build-client.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-build
+          path: client_react/build

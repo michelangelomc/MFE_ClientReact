@@ -146,8 +146,9 @@ export default function Alunos() {
                                 <FiUserX size={28} color="#a8a8b3" />
                             </button>
                         </div>
+
                     </li>
-                ))}
+                ))};
             </ul>
         </div>
     );
