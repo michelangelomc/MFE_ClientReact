@@ -5,29 +5,29 @@ export const api = axios.create({
 });
 
 export const getAlunos = async (authorization) => {
-  // Retorna os dados (response.data). Não passar `token` como segundo argumento do then.
   const response = await api.get("/api/aluno", authorization);
   console.log("getAlunos response", response.data);
   return response.data;
 };
 
-export const getAlunoById = async (id) => {
-  const response = await api.get(`/api/aluno/${id}`);
+export const getAlunoById = async (id, authorization) => {
+  const response = await api.get(`/api/aluno/${id}`, authorization);
   return response.data;
 };
 
-export const createAluno = async (aluno) => {
-  const response = await api.post("/api/aluno", aluno);
+export const createAluno = async (aluno, authorization) => {
+  console.log("createAluno aluno", aluno);
+  const response = await api.post("/api/aluno", aluno, authorization);
   return response.data;
 };
 
-export const updateAluno = async (id, aluno) => {
-  const response = await api.put(`/api/aluno/${id}`, aluno);
+export const updateAluno = async (id, aluno, authorization) => {
+  const response = await api.put(`/api/aluno/${id}`, aluno, authorization);
   return response.data;
 };
 
-export const deleteAluno = async (id) => {
-  const response = await api.delete(`/api/aluno/${id}`);
+export const deleteAluno = async (id, authorization) => {
+  const response = await api.delete(`/api/aluno/${id}`, authorization);
   return response.data;
 };
 

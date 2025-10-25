@@ -47,6 +47,14 @@ export default function Alunos() {
         }
     }
 
+    async function editAluno(id) {
+      try {
+          history(`/alunos/novo/${id}`);
+      } catch (err) {
+          console.error(`Erro ao editar aluno ${id}:`, err);
+      }
+    }    
+
     return (
         <div className="aluno-container">
             <header>
@@ -82,7 +90,7 @@ export default function Alunos() {
                             </div>
 
                             <div className="actions">
-                                <button type="button" aria-label={`Editar ${aluno.nome}`} className="edit-btn">
+                                <button type="button" aria-label={`Editar ${aluno.nome}`} className="edit-btn" onClick={() => editAluno(aluno.id)}>
                                     <FiEdit2 size={28} color="#a8a8b3" />
                                 </button>
 
