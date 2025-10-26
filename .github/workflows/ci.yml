@@ -24,7 +24,15 @@ jobs:
       - name: Install dependencies (client_react)
         working-directory: ./client_react
         run: |
-          npm ci
+          # Use npm ci when a lockfile exists for reproducible installs,
+          # otherwise fall back to npm install to avoid failing the job.
+          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ] || [ -f yarn.lock ]; then
+            echo "Lockfile found, running npm ci"
+            npm ci
+          else
+            echo "No lockfile found, running npm install"
+            npm install --no-audit --no-fund
+          fi
 
       - name: Build client_react
         working-directory: ./client_react
